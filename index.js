@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", userRouter);
-app.use(authenticate);
+// app.use(authenticate);
 app.use("/api",router)
 app.listen(process.env.PORT, async (req, res) => {
   try {
