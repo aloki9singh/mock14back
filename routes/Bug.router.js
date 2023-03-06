@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/getbugs", async (req, res) => {
   const bugs = await BugModel.find();
-  req.send(bugs);
+  res.send(bugs);
 });
 
 router.post("/addbug", async (req, res) => {
@@ -24,21 +24,21 @@ router.delete("/:id", async (req, res) => {
 
   try {
     await BugModel.findByIdAndDelete({ _id: id });
-    req.send(`Bug with id ${id} deleted`);
+    res.send(`Bug with id ${id} deleted`);
   } catch (err) {
     console.log({ ERR: err });
   }
 });
 
 router.patch("/:id", async (req, res) => {
-  const id = req.params.id;      
+  const id = req.params.id;
   const payload = req.body;
   try {
-    await BugModel.findByIdAndUpdate({ _id: id },payload);
-    req.send(`Bug with id ${id} Updated`);
+    await BugModel.findByIdAndUpdate({ _id: id }, payload);
+    res.send(`Bug with id ${id} Updated`);
   } catch (err) {
     console.log({ ERR: err });
   }
 });
 
-module.exports={router}
+module.exports = { router };
